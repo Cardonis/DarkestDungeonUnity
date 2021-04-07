@@ -10,11 +10,26 @@ public class CombatManager : MonoBehaviour
     public Entity currentFighter;
     public int turnNumber;
 
+
+    private void Awake()
+    {
+        if(instance== null)
+        {
+            instance = this;
+
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     public void NewRound()
     {
+        CharacterController.instance.inCombat = true;
         roundTacker++;
         currentFighter = null;
-        turnNumber = -1;
+        turnNumber = 0;
+        Debug.Log("Round : " + roundTacker);
 
         for (int i = 0; i < fighters.Count; i++)
         {
@@ -27,9 +42,23 @@ public class CombatManager : MonoBehaviour
     }
     public void NewTurn()
     {
+        if (turnNumber < fighters.Count)
+        {
+            currentFighter = fighters[turnNumber];
+            currentFighter.hasPlayed = true;
+            currentFighter.canPlay = true;
+            Debug.Log("Tour de : " + currentFighter);
+        }
+        else
+        {
+            NewRound();
+        }
+    }
+
+    public void EndTurn()
+    {
+        currentFighter.canPlay = false;
         turnNumber++;
-        currentFighter = fighters[turnNumber];
-        currentFighter.hasPlayed = true;
-        currentFighter.canPlay = true;
+        NewTurn();
     }
 }

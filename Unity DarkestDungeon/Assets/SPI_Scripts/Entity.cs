@@ -5,6 +5,7 @@ using System;
 
 public class Entity : MonoBehaviour, IComparable<Entity>
 {
+    public bool isCharacter;
     //BASE STATS
     public int maxHp;
     public float dodge;
@@ -39,11 +40,5 @@ public class Entity : MonoBehaviour, IComparable<Entity>
             return -1;
         }
         return 0;
-    }
-
-    public void EndTurn()
-    {
-        canPlay = false;
-        CombatManager.NewTrun();
     }
 }
