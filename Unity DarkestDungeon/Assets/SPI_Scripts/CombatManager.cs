@@ -48,6 +48,8 @@ public class CombatManager : MonoBehaviour
             currentFighter.hasPlayed = true;
             currentFighter.canPlay = true;
             Debug.Log("Tour de : " + currentFighter);
+            if (currentFighter.isCharacter)
+                CharacterController.instance.ActivatePlayerController();
         }
         else
         {
@@ -58,6 +60,8 @@ public class CombatManager : MonoBehaviour
     public void EndTurn()
     {
         currentFighter.canPlay = false;
+        if (currentFighter.isCharacter)
+            CharacterController.instance.DesactivatePlayerController();
         turnNumber++;
         NewTurn();
     }
