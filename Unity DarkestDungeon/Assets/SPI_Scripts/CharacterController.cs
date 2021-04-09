@@ -10,6 +10,7 @@ public class CharacterController : MonoBehaviour
     public Button endTurnButton;
     public GameObject playerCombatInterface;
     public List<Button> combatButtons;
+    public Entity currentCharacter;
 
     private void Awake()
     {
@@ -30,9 +31,18 @@ public class CharacterController : MonoBehaviour
             combatButtons.Add(playerCombatInterface.transform.GetChild(i).transform.GetComponent<Button>());
         }
     }
+    void Update()
+    {
+        if (inCombat)
+        {
+            
+        }
+    }
 
     public void ActivatePlayerController()
     {
+        inCombat = true;
+        currentCharacter = CombatManager.instance.currentFighter;
         for (int i = 0; i < playerCombatInterface.transform.childCount; i++)
         {
             combatButtons[5].GetComponent<Button>().interactable = true;
@@ -40,9 +50,15 @@ public class CharacterController : MonoBehaviour
     }
     public void DesactivatePlayerController()
     {
+        inCombat = false;
         for (int i = 0; i < playerCombatInterface.transform.childCount; i++)
         {
             combatButtons[5].GetComponent<Button>().interactable = false;
         }
+    }
+
+    private void UseCapacity()
+    {
+
     }
 }
