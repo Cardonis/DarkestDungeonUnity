@@ -28,6 +28,8 @@ public class Entity : MonoBehaviour, IComparable<Entity>
     public bool canPlay;
     public bool hasPlayed;
 
+    public int positionInGroup;
+
     public int CompareTo(Entity other)
     {
 

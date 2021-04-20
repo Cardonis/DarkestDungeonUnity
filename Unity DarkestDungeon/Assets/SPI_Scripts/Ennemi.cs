@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Ennemi : Entity
 {
-
+    public List<ActionManage> actionSet;
     public char type;
+    public int currentAction;
 
+    public virtual void Awake()
+    {
+        actionSet = new List<ActionManage>();
+    }
     private void Update()
     {
         if(CombatManager.instance.currentFighter == this)
@@ -17,14 +22,27 @@ public class Ennemi : Entity
     public void TakeTurn()
     {
 
+        currentAction = 0;
         if (canPlay && hasPlayed)
         {
-            SpearThrust();
+            hasPlayed = false;
+            ChooseAction();
         }
     }
-    public void SpearThrust()
+
+    public void ChooseAction()
     {
-        Debug.Log("SPEEEEAR!");
-        CombatManager.instance.EndTurn();
+        currentAction = Random.Range(0,actionSet.Count);
+        StartCoroutine(actionSet[currentAction].Action());
+    }
+}
+
+public class ActionManage 
+{
+
+    public Ennemi thisEnnemi;
+    public virtual IEnumerator Action()
+    {
+        yield return null;
     }
 }

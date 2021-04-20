@@ -65,4 +65,9 @@ public class CombatManager : MonoBehaviour
         turnNumber++;
         NewTurn();
     }
+
+    public void ExecuteAction()
+    {
+
+    }
 }
