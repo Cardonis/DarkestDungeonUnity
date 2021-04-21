@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class PlayerGroup : MonoBehaviour
 {
-    void Start()
-    {
 
-    }
 }

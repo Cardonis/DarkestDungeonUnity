@@ -9,11 +9,13 @@ public class CombatManager : MonoBehaviour
     public List<Entity> fighters;
     public Entity currentFighter;
     public int turnNumber;
-
+    public List<Transform> playerAnchors;
+    public List<Transform> ennemiesAnchors;
+    public GroupManager playerGroup, ennemiGroup;
 
     private void Awake()
     {
-        if(instance== null)
+        if (instance== null)
         {
             instance = this;
 
@@ -22,6 +24,18 @@ public class CombatManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+    public void StartFight(/*GroupManager playerGroup, GroupManager ennemiGroup*/)
+    {
+        for (int i=0; i<playerGroup.group.Count; i++)
+        {
+            fighters.Add(playerGroup.group[i].entity);
+        }
+        for (int j = 0; j < ennemiGroup.group.Count; j++)
+        {
+            fighters.Add(ennemiGroup.group[j].entity);
+        }
+        NewRound();
     }
     public void NewRound()
     {

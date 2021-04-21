@@ -36,13 +36,3 @@ public class Ennemi : Entity
         StartCoroutine(actionSet[currentAction].Action());
     }
 }
-
-public class ActionManage 
-{
-
-    public Ennemi thisEnnemi;
-    public virtual IEnumerator Action()
-    {
-        yield return null;
-    }
-}

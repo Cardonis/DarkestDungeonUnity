@@ -28,7 +28,13 @@ public class Entity : MonoBehaviour, IComparable<Entity>
     public bool canPlay;
     public bool hasPlayed;
 
+
+    public GameObject entityGameObject;
     public int positionInGroup;
+    void Start()
+    {
+        entityGameObject = gameObject;
+    }
 
     public int CompareTo(Entity other)
     {
@@ -43,4 +49,6 @@ public class Entity : MonoBehaviour, IComparable<Entity>
         }
         return 0;
     }
+
+
 }

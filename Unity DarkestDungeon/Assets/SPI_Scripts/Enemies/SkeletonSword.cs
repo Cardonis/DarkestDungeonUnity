@@ -17,6 +17,8 @@ public class GraveYardSlash : ActionManage
     public GraveYardSlash(Ennemi ennemi)
     {
         thisEnnemi = ennemi;
+        pcAffected = new List<Entity>();
+        ennemiAffected = new List<Entity>();
     }
     public override IEnumerator Action()
     {
@@ -52,5 +54,20 @@ public class GraveYardStumble : ActionManage
         {
             thisEnnemi.ChooseAction();
         }
+    }
+}
+public class GraveYardUltimate : ActionManage
+{
+    public GraveYardUltimate(Ennemi ennemi, Entity target) // target appelée par la compétence
+    {
+        thisEnnemi = ennemi;
+        pcAffected.Add(target);
+    }
+
+    public override IEnumerator Action()
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("Ultimate !");
+        CombatManager.instance.EndTurn();
     }
 }

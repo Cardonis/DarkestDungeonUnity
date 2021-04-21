@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &4244427533619306113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +110,8 @@ MonoBehaviour:
   initiative: 0
   canPlay: 0
   hasPlayed: 0
+  entityGameObject: {fileID: 0}
+  positionInGroup: 0
   accMod: 0
   crit: 0.055
   dmg: 
